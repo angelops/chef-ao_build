@@ -25,7 +25,7 @@ include_recipe 'zip_build::java'
 #include_recipe 'zip_build::ruby'
 include_recipe 'zip_build::nodejs'
 #include_recipe 'chef-dk'
-include_recipe 'python'
+include_recipe 'poise-python'
 include_recipe 'git'
 
 # should be def with users cookbook
