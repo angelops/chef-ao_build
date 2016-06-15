@@ -42,11 +42,13 @@ user 'zip'
 #  action     :sync
 #end
 
-python_virtualenv node[:zip_build][:deployment_scripts_path] do
+directory node[:zip_build][:deployment_scripts_path] do
   owner 'zip'
   group 'zip'
   action :create
 end
+
+python_virtualenv node[:zip_build][:deployment_scripts_path]
 
 python_pip 'fabric' do
   virtualenv node[:zip_build][:deployment_scripts_path]
