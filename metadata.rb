@@ -14,6 +14,6 @@ depends 'rbenv'
 depends 'git'
 depends 'nodejs'
 depends 'chef-dk'
-depends 'zip_common'
+#depends 'zip_common'
 depends 'debian'
 
