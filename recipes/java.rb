@@ -28,3 +28,4 @@ end
 
 include_recipe 'java'
 include_recipe 'maven'
+include_recipe 'chef-sbt'
