@@ -50,3 +50,22 @@ end
 
 python_virtualenv node[:zip_build][:deployment_scripts_path]
 
+directory node[:zip_build][:bamboo_agent_home] do
+  owner 'zip'
+  group 'zip'
+  action :create
+end
+
+directory "#{node[:zip_build][:bamboo_agent_home]}/.m2" do
+  owner 'zip'
+  group 'zip'
+  action :create
+end
+
+template "#{node[:zip_build][:bamboo_agent_home]}/.m2/settings.xml" do
+  source 'm2-settings-xml.erb'
+end
+
+remote_file "#{node[:zip_build][:bamboo_agent_home]}atlassian-bamboo-agent-installer-#{node[:zip_build][:bamboo_agent_version]}.jar" do
+  source "http://bamboo.aur.test.ziprealty.com/agentServer/agentInstaller/atlassian-bamboo-agent-installer-#{node[:zip_build][:bamboo_agent_version]}"
+end

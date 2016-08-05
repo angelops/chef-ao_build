@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+
+  <mirrors>
+    <mirror>
+      <mirrorOf>central</mirrorOf>
+        <url>http://repo1.maven.org/maven2</url>
+        <name>Central Repository</name>
+    </mirror>
+
+  </mirrors>
+
+ <servers>
+    <server>
+      <id>third-party</id>
+      <username>mdavis</username>
+      <password>zip234</password>
+    </server>
+    <server>
+      <id>nexus_on_bamboo</id>
+      <username>build</username>
+      <password>q2L-rvn-uhP-dmH</password>
+    </server>
+  </servers>
+
+  <profiles>
+    <profile>
+      <id>maestro-aur</id>
+
+      <repositories>
+        <repository>
+          <id>nexus_on_bamboo</id>
+          <name>Nexus on the Bamboo host</name>
+          <url>http://bamboo.aur.test.ziprealty.com:8081/nexus/</url>
+        </repository>
+        <repository>
+          <id>nexus_thirdparty_on_bamboo</id>
+          <name>Nexus on the Bamboo host</name>
+          <url>http://bamboo.aur.test.ziprealty.com:8081/nexus/content/repositories/thirdparty/</url>
+        </repository>
+        <repository>
+          <id>nexus_snapshots_on_bamboo</id>
+          <name>Nexus snapshots on the Bamboo host</name>
+          <url>http://bamboo.aur.test.ziprealty.com:8081/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+          <id>nexus_releases_on_bamboo</id>
+          <name>Nexus releases on the Bamboo host</name>
+          <url>http://bamboo.aur.test.ziprealty.com:8081/nexus/content/repositories/releases/</url>
+        </repository>
+        <repository>
+          <id>internal</id>
+          <name>Managed Zipr Internal Repository</name>
+          <url>http://release1.aur.ziprealty.com:8080/archiva/repository/internal</url>
+        </repository>
+
+        <repository>
+          <id>third-party</id>
+          <name>Managed Third-Party Repository</name>
+          <url>http://release1.aur.ziprealty.com:8080/archiva/repository/third-party</url>
+        </repository>
+
+        <repository>
+          <id>releases</id>
+          <name>Managed Releases Repository</name>
+          <url>http://release1.aur.ziprealty.com:8080/archiva/repository/releases</url>
+        </repository>
+
+        <repository>
+          <id>snapshots</id>
+          <name>Managed Snapshots Repository</name>
+          <url>http://release1.aur.ziprealty.com:8080/archiva/repository/snapshots</url>
+        </repository>
+
+        <repository>
+          <id>atlassian_public</id>
+          <name>Atlassian Public Repository</name>
+          <url>https://m2proxy.atlassian.com/repository/public</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </repository>
+        <repository>
+          <id>ehcache</id>
+          <name>EHCache Public Repository</name>
+          <url>http://oss.sonatype.org/content/repositories/sourceforge-releases</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </repository>
+
+      </repositories>
+
+      <pluginRepositories>
+        <pluginRepository>
+          <id>maestro-project-server</id>
+          <name>Maestro Project Server</name>
+
+<url>http://release1.aur.ziprealty.com:8080/archiva/proxy</url>
+        </pluginRepository>
+      </pluginRepositories>
+
+      <properties>
+        <JAVA_1_5_HOME>/home/zip/apps/jdk1.5.0_11</JAVA_1_5_HOME>
+      </properties>
+
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>maestro-aur</activeProfile>
+  </activeProfiles>
+
+</settings>
