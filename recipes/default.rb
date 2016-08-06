@@ -29,7 +29,8 @@ include_recipe 'poise-python'
 include_recipe 'git'
 
 # should be def with users cookbook
-user 'zip'
+user node[:zip_build][:user]
+group node[:zip_build][:user]
 
 # need to place a valid id_rsa in ~vagrant/.ssh
 # shouldn't have passphrase
@@ -43,23 +44,53 @@ user 'zip'
 #end
 
 directory node[:zip_build][:deployment_scripts_path] do
-  owner 'zip'
-  group 'zip'
+  owner user
+  group group
   action :create
 end
 
 python_virtualenv node[:zip_build][:deployment_scripts_path]
 
 directory node[:zip_build][:bamboo_agent_home] do
-  owner 'zip'
-  group 'zip'
+  owner user
+  group group
   action :create
 end
 
 directory "#{node[:zip_build][:bamboo_agent_home]}/.m2" do
-  owner 'zip'
-  group 'zip'
+  owner user
+  group group
   action :create
+end
+
+directory "#{node[:zip_build][:bamboo_agent_home]}/agents" do
+  owner user
+  group group
+  action :create
+end
+
+agent_count = node[:zip_build][:bamboo_agent_count]
+
+(0..agent_count).each do |i|
+  directory "#{node[:zip_build][:bamboo_agent_home]}/agents/#{i}" do
+    owner user
+    group group
+    action :create
+  end
+
+  template "#{node[:zip_build][:bamboo_agent_home]}/agents/#{i}/run" do
+    source 'bamboo-agent-run.erb'
+    owner user
+    group group
+    action :create
+    mode 0755
+    variables({
+     :home => node[:zip_build][:bamboo_agent_home],
+     :version => node[:zip_build][:bamboo_agent_version],
+     :server_url => node[:zip_build][:bamboo_agent_server_url],
+     :count => i
+    })
+  end
 end
 
 template "#{node[:zip_build][:bamboo_agent_home]}/.m2/settings.xml" do

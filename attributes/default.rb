@@ -4,3 +4,7 @@ default[:zip_build][:deployment_scripts_url] = 'http://juryan@stash.aur.ziprealt
 default[:zip_build][:bamboo_agent_version] = '5.12.3.1'
 default[:zip_build][:bamboo_agent_home] = '/srv/bamboo'
 default[:zip_build][:bamboo_user_home] = '/home/zip'
+default[:zip_build][:bamboo_agent_count] = 8
+default[:zip_build][:bamboo_agent_server_url] = 'http://bamboo.aur.test.ziprealty.com:8085/agentServer/'
+default[:zip_build][:user] = 'zip'
+default[:zip_build][:group] = 'zip'

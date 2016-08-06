@@ -15,3 +15,6 @@ suites:
     run_list:
       - recipe[zip_build::default]
     attributes:
+      zip_build:
+        name: root
+        group: root
