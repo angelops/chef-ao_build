@@ -69,9 +69,9 @@ directory "#{node[:zip_build][:bamboo_agent_home]}/agents" do
   action :create
 end
 
-agent_count = node[:zip_build][:bamboo_agent_count]
+agent_bounds = node[:zip_build][:bamboo_agent_count]-1
 
-(0..agent_count).each do |i|
+(0..agent_bounds).each do |i|
   directory "#{node[:zip_build][:bamboo_agent_home]}/agents/#{i}" do
     owner user
     group group
