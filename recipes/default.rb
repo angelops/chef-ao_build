@@ -66,6 +66,6 @@ template "#{node[:zip_build][:bamboo_agent_home]}/.m2/settings.xml" do
   source 'm2-settings-xml.erb'
 end
 
-remote_file "#{node[:zip_build][:bamboo_agent_home]}atlassian-bamboo-agent-installer-#{node[:zip_build][:bamboo_agent_version]}.jar" do
+remote_file "#{node[:zip_build][:bamboo_agent_home]}/atlassian-bamboo-agent-installer-#{node[:zip_build][:bamboo_agent_version]}.jar" do
   source "http://bamboo.aur.test.ziprealty.com/agentServer/agentInstaller/atlassian-bamboo-agent-installer-#{node[:zip_build][:bamboo_agent_version]}"
 end
